@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom";
-import { LuUser as User, LuMail as Mail, LuLock as Lock } from "react-icons/lu";
 
 import CustomInput from '../../components/CustomInput'
 import SendButton from '../../components/SendButton'
+import AnotherMethod from '../../components/AnotherMethod'
 
 import './signUp.scss'
 
@@ -20,7 +20,7 @@ function SignUp () {
     }
 
     return (
-        <div className='signUp'>
+        <div className='signUp fade-in-right'>
 
             <div>
                 <h1>Cadastre-se</h1>
@@ -32,8 +32,7 @@ function SignUp () {
             placeholder='Nome completo'
             state={user}  
             setState={setUser} 
-            Icon={User}
-            isValid={false}
+            isValid={!/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/.test(user)}
             />
 
             <CustomInput 
@@ -42,7 +41,6 @@ function SignUp () {
             placeholder='Email' 
             state={email}  
             setState={setemail} 
-            Icon={Mail}
             isValid={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
             />
 
@@ -53,7 +51,6 @@ function SignUp () {
             placeholder='Senha' 
             state={password}  
             setState={setPassword} 
-            Icon={Lock}
             isValid={password.length < 8}
             />
 
@@ -63,12 +60,13 @@ function SignUp () {
             placeholder='Senha' 
             state={confirmPassword}  
             setState={setConfirmPassword} 
-            Icon={Lock}
             isValid={password !== confirmPassword}
             />
             </div>
             
             <SendButton submit='Criar' />
+
+            <AnotherMethod />
 
             <div className='backToSingIn'>
                 <p onClick={handleSignUpClick}>Voltar a tela de login</p>

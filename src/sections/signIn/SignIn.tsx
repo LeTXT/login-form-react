@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LuMail as Mail, LuLock as Lock } from "react-icons/lu";
 
 import CustomInput from '../../components/CustomInput'
 import SendButton from "../../components/SendButton";
@@ -21,33 +20,33 @@ function SingIn() {
 
     const handleForgotPasswordClick = () => {
         navigate("/forgot-password"); 
-      };
+    };
     
     return (
-        <div className='singIn'>
+        <div className='singIn fade-in-up'>
             <div>
                 <h1>Faça login para continuar</h1>
             </div>
+            <form>
+                <CustomInput 
+                inputType='email'
+                errorMessage='Email inválida'
+                placeholder='Email' 
+                state={email}  
+                setState={setemail} 
+                isValid={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
+                />
 
-            <CustomInput 
-            inputType='email'
-            errorMessage='Email inválida'
-            placeholder='Email' 
-            state={email}  
-            setState={setemail} 
-            Icon={Mail}
-            isValid={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
-            />
-
-            <CustomInput 
-            inputType='password'
-            errorMessage='Senha inválida'
-            placeholder='Senha' 
-            state={password}  
-            setState={setPassword} 
-            Icon={Lock}
-            isValid={password.length < 8}
-            />
+                <CustomInput 
+                inputType='password'
+                errorMessage='Senha inválida'
+                placeholder='Senha' 
+                state={password}  
+                setState={setPassword} 
+                isValid={password.length < 8}
+                />
+            </form>
+            
 
             <div className='forgotPassword'>
                 <p onClick={handleForgotPasswordClick}>esqueceu a senha?</p>

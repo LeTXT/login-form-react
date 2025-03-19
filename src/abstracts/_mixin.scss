@@ -12,3 +12,12 @@
     border: 1px solid $light-grey;
     border-radius: 5px;
 }
+
+@mixin card() {
+    @include flex(column);
+    @include border();
+    
+    width: 300px;
+
+    padding: 16px;
+}

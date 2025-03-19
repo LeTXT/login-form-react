@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { LuEye as Eye, LuEyeClosed as ClosedEye } from "react-icons/lu";
+import { LuMail as Mail, LuLock as Lock, LuUser as User } from "react-icons/lu";
 
 import './components.scss'
 
@@ -8,18 +9,16 @@ interface CostumProps {
     placeholder: string;
     state: string;
     setState: (value: string) => void;
-    Icon: React.ElementType;
     inputType: string;
     isValid?: boolean | ((value: string) => boolean);
 }
 
-function CustomInput({ errorMessage, placeholder, state, setState, Icon, inputType, isValid}: CostumProps) {
+function CustomInput({ errorMessage, placeholder, state, setState, inputType, isValid}: CostumProps) {
     const [passwordToggle, setPasswordToggle] = useState<boolean>(false)
 
-    
     const [inputBlur, setInputBlur] = useState<boolean>(false)
     const [inputValidation, setInputValidation] = useState<string>('error hide')
-    
+
     useEffect(() => {
         if (inputBlur) {
             if (isValid) {
@@ -28,6 +27,7 @@ function CustomInput({ errorMessage, placeholder, state, setState, Icon, inputTy
                 setInputValidation('error hide');
             }
         }
+
     }, [inputBlur, state, isValid]);  
 
     const handleInputInput = (state: string) => {
@@ -40,15 +40,29 @@ function CustomInput({ errorMessage, placeholder, state, setState, Icon, inputTy
         }
     };
 
+    const selectIcon = () => {
+        if(inputType === 'password') {
+            return <Lock size={16} />
+        } 
+        if(inputType === 'email') {
+            return <Mail size={16} />
+        }
+        if(inputType === 'user') {
+            return <User size={16} />
+        }
+    }
+
     return (
         <div className="password">
             <div className={inputValidation}>
                 <p>{errorMessage}</p>
             </div>
             <div className='input' >
-                <Icon size={16}/>
+                <div>
+                    {selectIcon()}
+                </div>
                 <input 
-                    type={inputType === 'password' ? passwordToggle ? 'text' : 'password' : inputType} 
+                    type={inputType === 'password' ? passwordToggle ? 'text' : 'password' : inputType === 'email' ? 'email' : 'text'} 
                     onChange={(e) => handleInputInput(e.target.value)}
                     onBlur={handleInputBlur}
                     placeholder={placeholder}

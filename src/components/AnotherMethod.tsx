@@ -12,7 +12,8 @@ function AnotherMethod () {
                 {credentialsArray.map((item, index) => {
                     return (
                         <button key={index}>
-                            <img src={item.img} alt={item.title} />
+                            {/* <img src={item.img} alt={item.title} /> */}
+                            <item.icon size={35} color={item.color} className="icon"/>
                         </button>
                     )    
                 })}

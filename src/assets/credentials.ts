@@ -1,14 +1,18 @@
-export const credentialsArray: { img: string, title: string }[] = [
+import { FcGoogle as google } from "react-icons/fc"; 
+import { LuGithub as github, LuFacebook as facebook } from "react-icons/lu"
+
+export const credentialsArray: { icon: React.ElementType, title: string, color?: string }[] = [
     {
-        img: './image/google.svg', 
-        title: 'Google'
+        icon: google, 
+        title: 'Google',
     },
     {
-        img: './image/github.svg', 
+        icon: github, 
         title: 'Github'
     },
     {
-        img: './image/facebook.svg', 
-        title: 'Facebook'
+        icon: facebook, 
+        title: 'Facebook',
+        color: '#1877F2'
     },
 ]
