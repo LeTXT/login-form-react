@@ -1,0 +1,30 @@
+@use '../../abstracts/' as *;
+
+.signUp {
+    @include flex(column);
+    @include border();
+
+    width: 300px;
+
+    padding: 16px;
+
+    .backToSingIn {
+        margin-top: 30px;
+
+        p {
+            font-weight: 900;
+            cursor: pointer;
+        }
+    }   
+
+    .button {
+        margin-top: 30px;
+    }
+
+    .flexPassword {
+        @include flex();
+
+        gap: 5px;
+        width: 100%;
+    }
+}
