@@ -24,6 +24,8 @@
 
             opacity: 1;
             transition: opacity 0.2s ease-in-out;
+
+            user-select: none;
         }
 
         p:hover {
@@ -55,6 +57,15 @@
         }
     }
     
+}
+
+form {
+    @include flex(column);
+
+    width: 100%;
+
+    padding: 0;
+    margin: 0;
 }
 
 .fade-in-up {

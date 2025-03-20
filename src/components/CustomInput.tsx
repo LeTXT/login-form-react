@@ -67,9 +67,9 @@ function CustomInput({ errorMessage, placeholder, state, setState, inputType, is
                     onBlur={handleInputBlur}
                     placeholder={placeholder}
                 />
-                <button onClick={() => setPasswordToggle((prev) => !prev)}>
+                <div className="icon" onClick={() => setPasswordToggle((prev) => !prev)} >
                     { inputType === 'password' ? passwordToggle ? <Eye size={16} /> : <ClosedEye  size={16} /> : '' }
-                </button>
+                </div>
             </div>
         </div>
     )

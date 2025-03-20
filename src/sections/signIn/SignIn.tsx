@@ -45,14 +45,15 @@ function SingIn() {
                 setState={setPassword} 
                 isValid={password.length < 8}
                 />
-            </form>
+            
             
 
-            <div className='forgotPassword'>
-                <p onClick={handleForgotPasswordClick}>esqueceu a senha?</p>
-            </div>
+                <div className='forgotPassword'>
+                    <p onClick={handleForgotPasswordClick}>esqueceu a senha?</p>
+                </div>
 
-            <SendButton submit='Entrar' />
+                <SendButton submit='Entrar' />
+            </form>
 
             <AnotherMethod />
 
