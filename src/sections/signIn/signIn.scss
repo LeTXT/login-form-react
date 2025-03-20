@@ -8,12 +8,22 @@
         font-weight: bold;
     }
 
+    .errorLogin {
+        @include flex();
+
+        height: 10px;
+        width: 100%;
+        p {
+            color: $red-color;
+        }
+    }
+
     .forgotPassword {
         @include flex(row, end, center);
 
         width: 100%;
-        margin: 10px 0;
-
+        margin: 10px 0 20px;
+        padding: 0;
 
         border: none;
 

@@ -22,9 +22,9 @@ function CustomInput({ errorMessage, placeholder, state, setState, inputType, is
     useEffect(() => {
         if (inputBlur) {
             if (isValid) {
-                setInputValidation('error');
-            } else {
                 setInputValidation('error hide');
+            } else {
+                setInputValidation('error');
             }
         }
 
@@ -66,6 +66,7 @@ function CustomInput({ errorMessage, placeholder, state, setState, inputType, is
                     onChange={(e) => handleInputInput(e.target.value)}
                     onBlur={handleInputBlur}
                     placeholder={placeholder}
+                    required
                 />
                 <div className="icon" onClick={() => setPasswordToggle((prev) => !prev)} >
                     { inputType === 'password' ? passwordToggle ? <Eye size={16} /> : <ClosedEye  size={16} /> : '' }

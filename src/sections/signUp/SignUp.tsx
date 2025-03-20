@@ -6,6 +6,7 @@ import SendButton from '../../components/SendButton'
 import AnotherMethod from '../../components/AnotherMethod'
 
 import './signUp.scss'
+import { arrayObj } from '../../assets/registrations';
 
 function SignUp () {
     const [user, setUser] = useState<string>('')
@@ -19,12 +20,35 @@ function SignUp () {
         navigate("/")
     }
 
+    const isUserValid = /^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/.test(user)
+    const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isPasswordValid = password.length >= 8;
+    const isConfirmPasswordValid = password === confirmPassword;
+
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+    
+        const newObj = {
+            user: user,
+            email: email,
+            password: password
+        }
+    
+        arrayObj.push(newObj)
+    
+        console.log(arrayObj)
+
+        handleSignUpClick()
+    }
+
     return (
         <div className='signUp fade-in-right'>
 
             <div>
                 <h1>Cadastre-se</h1>
             </div>
+            <form onSubmit={handleSubmit}>
 
             <CustomInput 
             inputType='user'
@@ -32,7 +56,7 @@ function SignUp () {
             placeholder='Nome completo'
             state={user}  
             setState={setUser} 
-            isValid={!/^[A-Za-zÀ-ÖØ-öø-ÿ]+(?: [A-Za-zÀ-ÖØ-öø-ÿ]+)+$/.test(user)}
+            isValid={isUserValid}
             />
 
             <CustomInput 
@@ -41,7 +65,7 @@ function SignUp () {
             placeholder='Email' 
             state={email}  
             setState={setemail} 
-            isValid={!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)}
+            isValid={isEmailValid}
             />
 
             <div className='flexPassword'>
@@ -51,7 +75,7 @@ function SignUp () {
             placeholder='Senha' 
             state={password}  
             setState={setPassword} 
-            isValid={password.length < 8}
+            isValid={isPasswordValid}
             />
 
             <CustomInput 
@@ -60,11 +84,13 @@ function SignUp () {
             placeholder='Senha' 
             state={confirmPassword}  
             setState={setConfirmPassword} 
-            isValid={password !== confirmPassword}
+            isValid={isConfirmPasswordValid}
             />
             </div>
             
-            <SendButton submit='Criar' />
+            <SendButton submit='Criar' isDisabled={!(isEmailValid && isPasswordValid && isUserValid && isConfirmPasswordValid)}/>
+
+            </form>
 
             <AnotherMethod />
 
